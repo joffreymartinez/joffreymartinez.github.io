@@ -1,0 +1,153 @@
+<html>
+    
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <link rel="stylesheet" href="css/leaflet.css">
+        <link rel="stylesheet" href="css/qgis2web.css"><link rel="stylesheet" href="css/fontawesome-all.min.css">
+        <style>
+        #map {
+            width: 100%;
+            height: 100%;
+        }
+        </style>
+        <title>YYCMAPz</title>
+    </head>
+    <body>
+        <h1>Hey.</h1>
+        <div id="map">
+        </div>
+        <script src="js/qgis2web_expressions.js"></script>
+        <script src="js/leaflet.js"></script>
+        <script src="js/multi-style-layer.js"></script>
+        <script src="js/leaflet.rotatedMarker.js"></script>
+        <script src="js/leaflet.pattern.js"></script>
+        <script src="js/leaflet-hash.js"></script>
+        <script src="js/Autolinker.min.js"></script>
+        <script src="js/rbush.min.js"></script>
+        <script src="js/labelgun.min.js"></script>
+        <script src="js/labels.js"></script>
+        <script src="data/Calgary_1.js"></script>
+        <script src="data/Rivers_2.js"></script>
+        <script>
+        var map = L.map('map', {
+            zoomControl:true, maxZoom:28, minZoom:5
+        })
+        var hash = new L.Hash(map);
+        // map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
+        var bounds_group = new L.featureGroup([]);
+        function setBounds() {
+            if (bounds_group.getLayers().length) {
+                map.fitBounds(bounds_group.getBounds());
+            }
+        }
+        var layer_OSMStandard_0 = L.tileLayer('http://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            opacity: 1.0,
+            attribution: '<a href="https://www.openstreetmap.org/copyright">© OpenStreetMap contributors, CC-BY-SA</a>',
+            minZoom: 1,
+            maxZoom: 28,
+            minNativeZoom: 0,
+            maxNativeZoom: 19
+        });
+        layer_OSMStandard_0;
+        map.addLayer(layer_OSMStandard_0);
+        function pop_Calgary_1(feature, layer) {
+            var popupContent = '<table>\
+                    <tr>\
+                        <td colspan="2"><strong>Community Name:</strong><br />' + (feature.properties['name'] !== null ? Autolinker.link(feature.properties['name'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Community Code:</th>\
+                        <td>' + (feature.properties['comm_code'] !== null ? Autolinker.link(feature.properties['comm_code'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Quadrant:</th>\
+                        <td>' + (feature.properties['sector'] !== null ? Autolinker.link(feature.properties['sector'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">Community Type:</th>\
+                        <td>' + (feature.properties['class'] !== null ? Autolinker.link(feature.properties['class'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
+                    </tr>\
+                </table>';
+            layer.bindPopup(popupContent, {maxHeight: 400});
+        }
+
+        function style_Calgary_1_0() {
+            return {
+                pane: 'pane_Calgary_1',
+                opacity: 1,
+                color: 'rgba(35,35,35,0.6039215686274509)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(200,7,7,0.16470588235294117)',
+                interactive: true,
+            }
+        }
+        map.createPane('pane_Calgary_1');
+        map.getPane('pane_Calgary_1').style.zIndex = 401;
+        map.getPane('pane_Calgary_1').style['mix-blend-mode'] = 'normal';
+        var layer_Calgary_1 = new L.geoJson(json_Calgary_1, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_Calgary_1',
+            layerName: 'layer_Calgary_1',
+            pane: 'pane_Calgary_1',
+            onEachFeature: pop_Calgary_1,
+            style: style_Calgary_1_0,
+        });
+        bounds_group.addLayer(layer_Calgary_1);
+        map.addLayer(layer_Calgary_1);
+        function pop_Rivers_2(feature, layer) {
+        }
+
+        function style_Rivers_2_0() {
+            return {
+                pane: 'pane_Rivers_2',
+                opacity: 1,
+                color: 'rgba(35,35,35,1.0)',
+                dashArray: '',
+                lineCap: 'butt',
+                lineJoin: 'miter',
+                weight: 1, 
+                fill: true,
+                fillOpacity: 1,
+                fillColor: 'rgba(58,138,195,0.9176470588235294)',
+                interactive: true,
+            }
+        }
+        function style_Rivers_2_1() {
+            return {
+                pane: 'pane_Rivers_2',
+                stroke: false, 
+                fillOpacity: 0,
+                interactive: true,
+            }
+        }
+        map.createPane('pane_Rivers_2');
+        map.getPane('pane_Rivers_2').style.zIndex = 402;
+        map.getPane('pane_Rivers_2').style['mix-blend-mode'] = 'normal';
+        var layer_Rivers_2 = new L.geoJson.multiStyle(json_Rivers_2, {
+            attribution: '',
+            interactive: true,
+            dataVar: 'json_Rivers_2',
+            layerName: 'layer_Rivers_2',
+            pane: 'pane_Rivers_2',
+            onEachFeature: pop_Rivers_2,
+            styles: [style_Rivers_2_0,style_Rivers_2_1,]
+        });
+        bounds_group.addLayer(layer_Rivers_2);
+        map.addLayer(layer_Rivers_2);
+        var baseMaps = {};
+        L.control.layers(baseMaps,{'<img src="legend/Rivers_2.png" /> Rivers': layer_Rivers_2,'<img src="legend/Calgary_1.png" /> Calgary': layer_Calgary_1,"OSM Standard": layer_OSMStandard_0,}).addTo(map);
+        setBounds();
+        </script>
+    </body>
+</html>
