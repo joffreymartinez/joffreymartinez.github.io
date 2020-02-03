@@ -8,7 +8,9 @@
   <div id="cesiumContainer" style="width: 100%; height:100%"></div>
   <script>
     Cesium.Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI2YjI1ZDlkNi01YTAwLTRjZGUtYmMxMi1mZDM0ZWQ2ZTUxYjAiLCJpZCI6MjE2OTQsInNjb3BlcyI6WyJhc3IiLCJnYyJdLCJpYXQiOjE1ODAzMjU5ODl9.Q9uhPf1xCh8R4tBsIGlWwbBdhalj9Vzr-GNjdr2OYTI';
-    var viewer = new Cesium.Viewer('cesiumContainer');
+    var viewer = new Cesium.Viewer('cesiumContainer', {
+    terrainProvider: Cesium.createWorldTerrain()
+});
   </script>
 </body>
-</html>
+</html>S+
