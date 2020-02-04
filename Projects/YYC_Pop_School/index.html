@@ -12,8 +12,8 @@
         <link rel="stylesheet" href="css/MarkerCluster.Default.css">
         <style>
         html, body, #map {
-            width: 100%;
-            height: 100%;
+            width: 800px;
+            height: 600px;
             padding: 0;
             margin: 0;
         }
@@ -42,7 +42,7 @@
             zoomControl:true, maxZoom:20, minZoom:5
         })
         var hash = new L.Hash(map);
-        map.attributionControl.setPrefix('<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
+        map.attributionControl.setPrefix('<a href="https://leafletjs.com" title="A JS library for interactive maps">Leaflet</a> &middot; <a href="https://qgis.org">QGIS</a>');
         var bounds_group = new L.featureGroup([]);
         function setBounds() {
             if (bounds_group.getLayers().length) {
@@ -72,44 +72,43 @@
         function pop_YYC_Pop_2(feature, layer) {
             var popupContent = '<table>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['class'] !== null ? Autolinker.link(feature.properties['class'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
+                        <th scope="row">Community Name: </th>\
+                        <td>' + (feature.properties['name'] !== null ? Autolinker.link(feature.properties['name'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2">' + (feature.properties['comm_code'] !== null ? Autolinker.link(feature.properties['comm_code'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2"><strong>Community Name</strong><br />' + (feature.properties['name'] !== null ? Autolinker.link(feature.properties['name'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
+                        <th scope="row">Community Type: </th>\
+                        <td>' + (feature.properties['comm_code'] !== null ? Autolinker.link(feature.properties['comm_code'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
                     </tr>\
                     <tr>\
                         <th scope="row">Sector</th>\
                         <td>' + (feature.properties['sector'] !== null ? Autolinker.link(feature.properties['sector'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <th scope="row">Community Pop</th>\
+                        <th scope="row">Community Population:</th>\
                         <td>' + (feature.properties['Com_Pop'] !== null ? Autolinker.link(feature.properties['Com_Pop'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <th scope="row">Public  School Students</th>\
+                        <th scope="row">Public  School Students:</th>\
                         <td>' + (feature.properties['PUB_SCH'] !== null ? Autolinker.link(feature.properties['PUB_SCH'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <th scope="row">Seperate School Students</th>\
+                        <th scope="row">Seperate School Students:</th>\
                         <td>' + (feature.properties['SEP_SCH'] !== null ? Autolinker.link(feature.properties['SEP_SCH'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <th scope="row">Public Seperate School Students</th>\
+                        <th scope="row">Public Seperate School Students:</th>\
                         <td>' + (feature.properties['PUBSEP_SCH'] !== null ? Autolinker.link(feature.properties['PUBSEP_SCH'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <th scope="row">Other School Students</th>\
+                        <th scope="row">Other School Students:</th>\
                         <td>' + (feature.properties['OTHER_SCH'] !== null ? Autolinker.link(feature.properties['OTHER_SCH'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <th scope="row">Unknown School Students</th>\
+                        <th scope="row">Unknown School Students:</th>\
                         <td>' + (feature.properties['UNKNWN_SCH'] !== null ? Autolinker.link(feature.properties['UNKNWN_SCH'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <th scope="row">Total School per Community</th>\
+                        <th scope="row">Total School in Community:</th>\
                         <td>' + (feature.properties['NAME_count'] !== null ? Autolinker.link(feature.properties['NAME_count'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
                     </tr>\
                 </table>';
@@ -298,43 +297,32 @@
         function pop_Schools_4(feature, layer) {
             var popupContent = '<table>\
                     <tr>\
-                        <td colspan="2"><strong>School Name</strong><br />' + (feature.properties['NAME'] !== null ? Autolinker.link(feature.properties['NAME'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
+                        <th scope="row">School Name:</th>\
+                        <td>' + (feature.properties['NAME'] !== null ? Autolinker.link(feature.properties['NAME'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <th scope="row">School Board</th>\
+                        <th scope="row">School Board: </th>\
                         <td>' + (feature.properties['BOARD'] !== null ? Autolinker.link(feature.properties['BOARD'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <th scope="row">Type </th>\
+                        <th scope="row">School Type: </th>\
                         <td>' + (feature.properties['TYPE'] !== null ? Autolinker.link(feature.properties['TYPE'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2"><strong>NAME_AB</strong><br />' + (feature.properties['NAME_AB'] !== null ? Autolinker.link(feature.properties['NAME_AB'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
+                        <th scope="row">Grade Level: </th>\
+                        <td>' + (feature.properties['GRADES'] !== null ? Autolinker.link(feature.properties['GRADES'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2"><strong>Address</strong><br />' + (feature.properties['ADDRESS_AB'] !== null ? Autolinker.link(feature.properties['ADDRESS_AB'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
+                        <th scope="row">Address: </th>\
+                        <td>' + (feature.properties['ADDRESS_AB'] !== null ? Autolinker.link(feature.properties['ADDRESS_AB'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2"><strong>City</strong><br />' + (feature.properties['CITY'] !== null ? Autolinker.link(feature.properties['CITY'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
+                        <th scope="row">CITY: </th>\
+                        <td>' + (feature.properties['CITY'] !== null ? Autolinker.link(feature.properties['CITY'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
                     </tr>\
                     <tr>\
-                        <td colspan="2"><strong>Province</strong><br />' + (feature.properties['PROVINCE'] !== null ? Autolinker.link(feature.properties['PROVINCE'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2"><strong>Grades</strong><br />' + (feature.properties['GRADES'] !== null ? Autolinker.link(feature.properties['GRADES'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['DATA_SOURC'] !== null ? Autolinker.link(feature.properties['DATA_SOURC'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <th scope="row">POSTAL_COD</th>\
-                        <td>' + (feature.properties['POSTAL_COD'] !== null ? Autolinker.link(feature.properties['POSTAL_COD'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['longitude'] !== null ? Autolinker.link(feature.properties['longitude'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
-                    </tr>\
-                    <tr>\
-                        <td colspan="2">' + (feature.properties['latitude'] !== null ? Autolinker.link(feature.properties['latitude'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
+                        <th scope="row">PROVINCE: </th>\
+                        <td>' + (feature.properties['PROVINCE'] !== null ? Autolinker.link(feature.properties['PROVINCE'].toLocaleString(), {truncate: {length: 30, location: 'smart'}}) : '') + '</td>\
                     </tr>\
                 </table>';
             layer.bindPopup(popupContent, {maxHeight: 400});
@@ -475,7 +463,7 @@
                 return L.circleMarker(latlng, style_Schools_4_0(feature));
             },
         });
-        var cluster_Schools_4 = new L.MarkerClusterGroup({showCoverageOnHover: false, disableClusteringAtZoom: 10});
+        var cluster_Schools_4 = new L.MarkerClusterGroup({showCoverageOnHover: false, disableClusteringAtZoom: 12});
         cluster_Schools_4.addLayer(layer_Schools_4);
 
         bounds_group.addLayer(layer_Schools_4);
@@ -487,7 +475,7 @@
         '<img src="legend/Rivers_3.png" /> Rivers': layer_Rivers_3,
         "OSM Standard": layer_OSMStandard_1,
         "Google Satellite": layer_GoogleSatellite_0,},
-        {collapsed:false}).addTo(map);
+        {collapsed:true}).addTo(map);
         map.on("zoomend", function(){
 
                 if (map.hasLayer(layer_YYC_Pop_2)) {
