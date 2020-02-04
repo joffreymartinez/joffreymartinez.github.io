@@ -475,14 +475,19 @@
                 return L.circleMarker(latlng, style_Schools_4_0(feature));
             },
         });
-        var cluster_Schools_4 = new L.MarkerClusterGroup({showCoverageOnHover: false,
-            spiderfyDistanceMultiplier: 2});
+        var cluster_Schools_4 = new L.MarkerClusterGroup({showCoverageOnHover: false, disableClusteringAtZoom: 10});
         cluster_Schools_4.addLayer(layer_Schools_4);
 
         bounds_group.addLayer(layer_Schools_4);
         cluster_Schools_4.addTo(map);
         var baseMaps = {};
-        L.control.layers(baseMaps,{'Schools<br /><table><tr><td style="text-align: center;"><img src="legend/Schools_4_PublicSchool0.png" /></td><td>Public School</td></tr><tr><td style="text-align: center;"><img src="legend/Schools_4_PrivateSchool1.png" /></td><td>Private School</td></tr><tr><td style="text-align: center;"><img src="legend/Schools_4_PostSecondary2.png" /></td><td>Post Secondary</td></tr><tr><td style="text-align: center;"><img src="legend/Schools_4_SeperateSchool3.png" /></td><td>Seperate School</td></tr><tr><td style="text-align: center;"><img src="legend/Schools_4_CharterSchool4.png" /></td><td>Charter School</td></tr><tr><td style="text-align: center;"><img src="legend/Schools_4_FrancophoneSchool5.png" /></td><td>Francophone School</td></tr><tr><td style="text-align: center;"><img src="legend/Schools_4_6.png" /></td><td></td></tr></table>': cluster_Schools_4,'<img src="legend/Rivers_3.png" /> Rivers': layer_Rivers_3,'YYC_Pop<br /><table><tr><td style="text-align: center;"><img src="legend/YYC_Pop_2_NoPopIndustrial0.png" /></td><td>No Pop/Industrial</td></tr><tr><td style="text-align: center;"><img src="legend/YYC_Pop_2_136001.png" /></td><td>1 - 3600</td></tr><tr><td style="text-align: center;"><img src="legend/YYC_Pop_2_360161412.png" /></td><td>3601 - 6141 </td></tr><tr><td style="text-align: center;"><img src="legend/YYC_Pop_2_614194213.png" /></td><td>6141 - 9421 </td></tr><tr><td style="text-align: center;"><img src="legend/YYC_Pop_2_9421135014.png" /></td><td>9421 - 13501 </td></tr><tr><td style="text-align: center;"><img src="legend/YYC_Pop_2_13501197215.png" /></td><td>13501 - 19721 </td></tr><tr><td style="text-align: center;"><img src="legend/YYC_Pop_2_19721258706.png" /></td><td>19721 - 25870 </td></tr></table>': layer_YYC_Pop_2,"OSM Standard": layer_OSMStandard_1,"Google Satellite": layer_GoogleSatellite_0,},{collapsed:false}).addTo(map);
+        L.control.layers(baseMaps,
+        {'Schools<br /><table><tr><td style="text-align: center;"><img src="legend/Schools_4_PublicSchool0.png" /></td><td>Public School</td></tr><tr><td style="text-align: center;"><img src="legend/Schools_4_PrivateSchool1.png" /></td><td>Private School</td></tr><tr><td style="text-align: center;"><img src="legend/Schools_4_PostSecondary2.png" /></td><td>Post Secondary</td></tr><tr><td style="text-align: center;"><img src="legend/Schools_4_SeperateSchool3.png" /></td><td>Seperate School</td></tr><tr><td style="text-align: center;"><img src="legend/Schools_4_CharterSchool4.png" /></td><td>Charter School</td></tr><tr><td style="text-align: center;"><img src="legend/Schools_4_FrancophoneSchool5.png" /></td><td>Francophone School</td></tr></table>': cluster_Schools_4,
+        'Population<br /><table><tr><td style="text-align: center;"><img src="legend/YYC_Pop_2_NoPopIndustrial0.png" /></td><td>No Pop/Industrial</td></tr><tr><td style="text-align: center;"><img src="legend/YYC_Pop_2_136001.png" /></td><td>1 - 3600</td></tr><tr><td style="text-align: center;"><img src="legend/YYC_Pop_2_360161412.png" /></td><td>3601 - 6141 </td></tr><tr><td style="text-align: center;"><img src="legend/YYC_Pop_2_614194213.png" /></td><td>6141 - 9421 </td></tr><tr><td style="text-align: center;"><img src="legend/YYC_Pop_2_9421135014.png" /></td><td>9421 - 13501 </td></tr><tr><td style="text-align: center;"><img src="legend/YYC_Pop_2_13501197215.png" /></td><td>13501 - 19721 </td></tr><tr><td style="text-align: center;"><img src="legend/YYC_Pop_2_19721258706.png" /></td><td>19721 - 25870 </td></tr></table>': layer_YYC_Pop_2,
+        '<img src="legend/Rivers_3.png" /> Rivers': layer_Rivers_3,
+        "OSM Standard": layer_OSMStandard_1,
+        "Google Satellite": layer_GoogleSatellite_0,},
+        {collapsed:false}).addTo(map);
         map.on("zoomend", function(){
 
                 if (map.hasLayer(layer_YYC_Pop_2)) {
