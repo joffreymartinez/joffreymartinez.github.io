@@ -1,16 +1,27 @@
-<html lang="en">
+<html>
 <head>
   <meta charset="utf-8">
-  <script src="https://cesium.com/downloads/cesiumjs/releases/1.65/Build/Cesium/Cesium.js"></script>
-  <link href="https://cesium.com/downloads/cesiumjs/releases/1.65/Build/Cesium/Widgets/widgets.css" rel="stylesheet">
+  <script src="https://cesium.com/downloads/cesiumjs/releases/1.66/Build/Cesium/Cesium.js"></script>
+  <link href="https://cesium.com/downloads/cesiumjs/releases/1.66/Build/Cesium/Widgets/widgets.css" rel="stylesheet">
 </head>
 <body>
-  <div id="cesiumContainer" style="width: 100%; height:100%"></div>
-  <script>
-    Cesium.Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI2YjI1ZDlkNi01YTAwLTRjZGUtYmMxMi1mZDM0ZWQ2ZTUxYjAiLCJpZCI6MjE2OTQsInNjb3BlcyI6WyJhc3IiLCJnYyJdLCJpYXQiOjE1ODAzMjU5ODl9.Q9uhPf1xCh8R4tBsIGlWwbBdhalj9Vzr-GNjdr2OYTI';
-    var viewer = new Cesium.Viewer('cesiumContainer', {
+  <div id="cesiumContainer" style="width: 800px; height:600px"></div>
+<script>
+  Cesium.Ion.defaultAccessToken = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJqdGkiOiI2YjI1ZDlkNi01YTAwLTRjZGUtYmMxMi1mZDM0ZWQ2ZTUxYjAiLCJpZCI6MjE2OTQsInNjb3BlcyI6WyJhc3IiLCJnYyJdLCJpYXQiOjE1ODAzMjU5ODl9.Q9uhPf1xCh8R4tBsIGlWwbBdhalj9Vzr-GNjdr2OYTI';
+
+  var viewer = new Cesium.Viewer('cesiumContainer', {
     terrainProvider: Cesium.createWorldTerrain()
-});
+  });
+  var tileset = viewer.scene.primitives.add(
+    new Cesium.Cesium3DTileset({url:Cesium.IonResource.fromAssetId(72933)})
+  );
+  var layer1 = viewer.imageryLayers.addImageryProvider(
+    new Cesium.IonImageryProvider({assetId:3812})
+  );
+    viewer.zoomTo(layer1)
   </script>
+
 </body>
-</html>S+
+<img src= "D:\GitHub\joffreymartinez.github.io\IMG\Cry.gif"> 
+
+</html>
