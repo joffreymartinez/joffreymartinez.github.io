@@ -31,7 +31,8 @@ body {
   line-height: 1; }
 
 ol, ul {
-  list-style: none; }
+  list-style: none;
+  list-style-position: outside }
 
 blockquote, q {
   quotes: none; }
@@ -1258,6 +1259,7 @@ a.image {
     transform: scale(1.075); }
 
 /* List */
+
 ol {
   list-style: decimal;
   margin: 0 0 2em 0;
